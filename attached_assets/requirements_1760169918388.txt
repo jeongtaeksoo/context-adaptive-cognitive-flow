@@ -1,0 +1,17 @@
+# Context-Adaptive Cognitive Flow System - Dependencies
+# For SCI paper publication and reproducibility
+
+# Core dependencies
+streamlit>=1.50.0
+numpy>=2.3.3
+pandas>=2.3.3
+plotly>=6.3.1
+scipy>=1.16.2
+sqlalchemy>=2.0.43
+psycopg2-binary>=2.9.10
+speechrecognition>=3.14.3
+
+# Optional ML dependencies (experimental, commented out by default)
+# Uncomment to enable ML-enhanced mode
+# sentence-transformers>=2.2.0
+# torch>=2.0.0
