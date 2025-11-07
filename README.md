@@ -4,7 +4,7 @@ A Python implementation of the context-adaptive cognitive flow framework for cog
 
 ## Overview
 
-To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Teacher, Companion, Coach) that work together to provide personalized cognitive interventions.
+To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Coach, Companion, Teacher) that work together to provide personalized cognitive interventions.
 
 ### Clinical Validation Results
 - **41% higher retention** compared to non-adaptive systems
@@ -36,9 +36,9 @@ To enable emotionally meaningful and cognitively relevant engagement, the system
 
 ### Persona Agents
 
-- **Teacher**: Exclusively controls adaptive difficulty regulation (θ_t, b_t, P_t)
-- **Companion**: Receives difficulty state, provides emotional support (Russell's circumplex model)
 - **Coach**: Receives difficulty state, delivers motivational feedback
+- **Companion**: Receives difficulty state, provides emotional support (Russell's circumplex model)
+- **Teacher**: Exclusively controls adaptive difficulty regulation (θ_t, b_t, P_t)
 
 ## Quick Start
 
@@ -50,7 +50,7 @@ python context_adaptive_cognitive_flow/main.py
 The simulation will:
 - Execute 10 time steps of adaptive cognitive flow
 - Print detailed state information for each step
-- Show persona agent responses (Teacher, Companion, Coach)
+- Show persona agent responses (Coach, Companion, Teacher)
 - Generate visualization saved as `cognitive_flow_simulation.png`
 
 ## Project Structure
@@ -73,9 +73,9 @@ context_adaptive_cognitive_flow/
 
 ```
 [t=00] L_cog=0.81 | P_t=0.71 | b_t=1.20 | θ_t=1.50 | Delay=4.1s | Emotion=(+0.6,-0.1)
-       [Teacher] Difficulty decreasing by 0.021 | User Ability Δ=+0.003 | Performance=71.09%
-       [Companion] Emotion=content (V=+0.64, A=-0.08) | L_cog=0.81
        [Coach] Step 0 | Establishing baseline...
+       [Companion] Emotion=content (V=+0.64, A=-0.08) | L_cog=0.81
+       [Teacher] Difficulty decreasing by 0.021 | User Ability Δ=+0.003 | Performance=71.09%
 ```
 
 ## Key Equations Implemented
