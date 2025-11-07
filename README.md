@@ -10,7 +10,6 @@ To enable emotionally meaningful and cognitively relevant engagement, the system
 - **41% higher retention** compared to non-adaptive systems
 - **62% reduction** in computational load via selective attention
 - **80% accuracy** in emotion recognition (Russell's circumplex model)
-- Empirically validated with **120 older adults**
 
 ## Architecture
 
