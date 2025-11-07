@@ -59,9 +59,9 @@ The simulation will:
 context_adaptive_cognitive_flow/
 ├── main.py                    # Main simulation entry point
 ├── agents/
-│   ├── teacher.py            # Teacher persona agent
+│   ├── coach.py              # Coach persona agent
 │   ├── companion.py          # Companion persona agent
-│   └── coach.py              # Coach persona agent
+│   └── teacher.py            # Teacher persona agent
 └── modules/
     ├── sensing.py            # Stage I: Multimodal sensing
     ├── context_recognition.py # Stage II: Cognitive load (Eq.1)
