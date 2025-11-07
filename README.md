@@ -21,7 +21,6 @@ To enable emotionally meaningful and cognitively relevant engagement, the system
 
 2. **Stage II: Persona-Specific Context Recognition**
    - **Eq.(1)**: `L_cog = 0.4*(Δt_resp/t̄_base) + 0.35*e_rate + 0.25*σ_att²`
-   - Weights empirically derived from 120 older adults
    - Provides clinically interpretable load levels in [0, 2]
 
 3. **Stage III: Emotionally Adaptive Response Strategy**
@@ -82,7 +81,7 @@ context_adaptive_cognitive_flow/
 ## Key Equations Implemented
 
 - **Eq.1** (Cognitive Load): `L_cog = 0.4*(Δt_resp/t̄_base) + 0.35*e_rate + 0.25*σ_att²`
-  - Weights (0.4, 0.35, 0.25) empirically derived from 120 older adults
+Weights (0.4, 0.35, 0.25) were set to reflect the relative influence of response latency, error rate, and attention variability.
 - **Eq.2** (Performance): `P_t = 1/(1 + exp(-a*(θ_t - b_t)))`
   - θ_t: user ability, b_t: item difficulty
 - **Eq.3** (Difficulty Update): `b_{t+1} = clip[0,3](b_t + η*(P_t - P*))`
