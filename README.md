@@ -4,7 +4,7 @@ A Python implementation of the context-adaptive cognitive flow framework for cog
 
 ## Overview
 
-To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Coach, Companion, Teacher) that work together to provide personalized cognitive interventions.
+To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Coach, Teacher, Companion) that work together to provide personalized cognitive interventions.
 
 ### Clinical Validation Results
 - **41% higher retention** compared to non-adaptive systems
