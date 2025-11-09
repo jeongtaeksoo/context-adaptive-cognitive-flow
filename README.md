@@ -108,7 +108,7 @@ Weights (0.4, 0.35, 0.25) were set to reflect the relative influence of response
 
 ## References
 
-Based on the paper: *"Designing a Generative AI Framework for Cognitive Intervention in Older Adults"*
+Based on the paper: *"Designing a Generative AI Framework for Cognitive Intervention in Older Adults: An Integrated Engineering Framework and Clinical Protocol"*
 
 **GitHub Repository**: https://github.com/jeongtaeksoo/context-adaptive-cognitive-flow
 
