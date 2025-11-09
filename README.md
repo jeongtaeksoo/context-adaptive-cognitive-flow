@@ -37,8 +37,8 @@ To enable emotionally meaningful and cognitively relevant engagement, the system
 ### Persona Agents
 
 - **Coach**: Receives difficulty state, delivers motivational feedback
-- **Companion**: Receives difficulty state, provides emotional support (Russell's circumplex model)
 - **Teacher**: Exclusively controls adaptive difficulty regulation (θ_t, b_t, P_t)
+- **Companion**: Receives difficulty state, provides emotional support (Russell's circumplex model)
 
 ## Quick Start
 
@@ -59,9 +59,9 @@ The simulation will:
 context_adaptive_cognitive_flow/
 ├── main.py                    # Main simulation entry point
 ├── agents/
-│   ├── coach.py              # Coach persona agent
-│   ├── companion.py          # Companion persona agent
-│   └── teacher.py            # Teacher persona agent
+│   ├── coach.py            # Coach persona agent
+│   ├── teacher.py          # Teacher persona agent
+│   └── companion.py        # Companion persona agent    
 └── modules/
     ├── sensing.py            # Stage I: Multimodal sensing
     ├── context_recognition.py # Stage II: Cognitive load (Eq.1)
