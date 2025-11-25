@@ -6,10 +6,10 @@ A Python implementation of the context-adaptive cognitive flow framework for cog
 
 To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Coach, Teacher, Companion) that work together to provide personalized cognitive interventions.
 
-### Clinical Validation Results
-- **41% higher retention** compared to non-adaptive systems
-- **62% reduction** in computational load via selective attention
-- **80% accuracy** in emotion recognition (Russell's circumplex model)
+### System Performance & Expected Outcomes
+higher retention compared to non-adaptive systems
+reduction in computational load via selective attention
+accuracy in emotion recognition (Russell's circumplex model)
 
 ## Architecture
 
@@ -108,7 +108,7 @@ Weights (0.4, 0.35, 0.25) were set to reflect the relative influence of response
 
 ## References
 
-Based on the paper: *"Designing a Generative AI Framework for Cognitive Intervention in Older Adults: An Integrated Engineering Framework and Clinical Protocol"*
+Based on the paper: *"System Performance & Expected Outcomes higher retention compared to non-adaptive systems reduction in computational load via selective attention accuracy in emotion recognition (Russell's circumplex model)"*
 
 **GitHub Repository**: https://github.com/jeongtaeksoo/context-adaptive-cognitive-flow
 
