@@ -7,9 +7,7 @@ A Python implementation of the context-adaptive cognitive flow framework for cog
 To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Coach, Teacher, Companion) that work together to provide personalized cognitive interventions.
 
 ### System Performance & Expected Outcomes
-• 41% higher retention compared to non-adaptive systems
-• 62% reduction in computational load via selective attention
-• 80% accuracy in emotion recognition (Russell’s circumplex model)
+The framework is designed to improve user retention, reduce computational load through selective attention, and provide stable emotion recognition within clinically interpretable ranges.
 
 ## Architecture
 
