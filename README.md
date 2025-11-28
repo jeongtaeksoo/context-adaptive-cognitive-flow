@@ -7,7 +7,9 @@ A Python implementation of the context-adaptive cognitive flow framework for cog
 To enable emotionally meaningful and cognitively relevant engagement, the system implements a 4-stage adaptive pipeline with three collaborative persona agents (Coach, Teacher, Companion) that work together to provide personalized cognitive interventions.
 
 ### System Performance & Expected Outcomes
-The framework is designed to improve user retention, reduce computational load through selective attention, and provide stable emotion recognition within clinically interpretable ranges.
+
+This framework provides a mathematical and design model for a generative AI–based cognitive activation system grounded in Self-Determination Theory (SDT) and three persona agents (Coach, Teacher, Companion).
+
 
 ## Architecture
 
