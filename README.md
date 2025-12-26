@@ -99,12 +99,12 @@ Weights (0.4, 0.35, 0.25) were set to reflect the relative influence of response
 
 ## Features
 
-✅ Deterministic simulation (reproducible results)  
-✅ Mathematical fidelity to research equations  
-✅ Modular architecture with clean separation of concerns  
-✅ Three collaborative persona agents  
-✅ Real-time visualization of cognitive flow dynamics  
-✅ Academic-style documentation with equation references  
+ Deterministic simulation (reproducible results)  
+ Mathematical fidelity to research equations  
+ Modular architecture with clean separation of concerns  
+ Three collaborative persona agents  
+ Real-time visualization of cognitive flow dynamics  
+ Academic-style documentation with equation references  
 
 ## References
 
