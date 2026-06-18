@@ -17,21 +17,22 @@ This framework provides a mathematical and design model for a generative AI–ba
 
 1. **Stage I: Multimodal Data Sensing**
    - Captures behavioral, vocal, performance, and temporal features
-   - Selective attention reduces computational load by 62%
+   - Selective attention prioritizes relevant features to reduce computational load
 
 2. **Stage II: Persona-Specific Context Recognition**
-   - **Eq.(1)**: `L_cog = 0.4*(Δt_resp/t̄_base) + 0.35*e_rate + 0.25*σ_att²`
+   - **Eq.(1)**: `L_cog = w_1*(Δt_resp/t̄_base) + w_2*e_rate + w_3*σ_att²`
+   - Initial weights: `w_1=0.4`, `w_2=0.35`, `w_3=0.25`
    - Provides clinically interpretable load levels in [0, 2]
 
 3. **Stage III: Emotionally Adaptive Response Strategy**
    - **Eq.(2)**: `P_t = 1/(1 + exp(-a*(θ_t - b_t)))`
-   - **Eq.(3)**: `b_{t+1} = clip[0,3](b_t + η*(P_t - P*))`
+   - **Eq.(2)**: `b_{t+1} = clip[b_min,b_max](b_t + η*(P_t - P*))`
    - Maintains success probability at P* ≈ 0.85 (optimal learning zone)
    - Adaptive response delay prevents frustration
 
 4. **Stage IV: Feedback and Iterative Adaptation**
-   - **Eq.(4)**: `θ_{t+1} = 0.7*θ_t + 0.3*θ̂_t`
-   - 0.7/0.3 weighting accounts for "good days" and "bad days"
+   - **Eq.(3)**: `θ_{t+1} = λθ_t + (1-λ)θ̂_t`
+   - λ balances historical stability with recent responsiveness
    - Accommodates day-to-day cognitive variability
 
 ### Persona Agents
@@ -65,8 +66,8 @@ context_adaptive_cognitive_flow/
 └── modules/
     ├── sensing.py            # Stage I: Multimodal sensing
     ├── context_recognition.py # Stage II: Cognitive load (Eq.1)
-    ├── response_strategy.py   # Stage III: Adaptation (Eq.2-3)
-    └── feedback_loop.py       # Stage IV: User ability update (Eq.4)
+    ├── response_strategy.py   # Stage III: Adaptation (Eq.2)
+    └── feedback_loop.py       # Stage IV: User ability update (Eq.3)
 ```
 
 ## Sample Output
@@ -80,14 +81,14 @@ context_adaptive_cognitive_flow/
 
 ## Key Equations Implemented
 
-- **Eq.1** (Cognitive Load): `L_cog = 0.4*(Δt_resp/t̄_base) + 0.35*e_rate + 0.25*σ_att²`
-Weights (0.4, 0.35, 0.25) were set to reflect the relative influence of response latency, error rate, and attention variability.
-- **Eq.2** (Performance): `P_t = 1/(1 + exp(-a*(θ_t - b_t)))`
+- **Eq.1** (Cognitive Load): `L_cog = w_1*(Δt_resp/t̄_base) + w_2*e_rate + w_3*σ_att²`
+  - Initial weights: `w_1=0.4`, `w_2=0.35`, `w_3=0.25`
+- **Eq.2** (Performance and Difficulty Update): `P_t = 1/(1 + exp(-a*(θ_t - b_t)))`, `b_{t+1} = clip[b_min,b_max](b_t + η*(P_t - P*))`
   - θ_t: user ability, b_t: item difficulty
-- **Eq.3** (Difficulty Update): `b_{t+1} = clip[0,3](b_t + η*(P_t - P*))`
   - P* ≈ 0.85 (optimal challenge zone for learning)
-- **Eq.4** (User Ability Update): `θ_{t+1} = 0.7*θ_t + 0.3*θ̂_t`
-  - 0.7/0.3 weighting balances stability vs. responsiveness
+- **Eq.3** (User Ability Update): `θ_{t+1} = λθ_t + (1-λ)θ̂_t`
+  - θ̂_t is the maximum likelihood estimate based on recent performance
+  - λ balances stability vs. responsiveness
 - **Delay Formula**: `t_delay = clip[1.5,5.0](2.5 * max(0.5, 1 + 0.8*L_cog))`
   - Neither frustratingly fast nor patronizingly slow
 
@@ -108,8 +109,8 @@ Weights (0.4, 0.35, 0.25) were set to reflect the relative influence of response
 
 ## References
 
-Based on the paper: *"System Performance & Expected Outcomes higher retention compared to non-adaptive systems reduction in computational load via selective attention accuracy in emotion recognition (Russell's circumplex model)"*
+Based on the paper: *"A Generative AI Framework for Cognitive Intervention in Older Adults: An Integrated Engineering Design and Clinical Protocol"*
 
 **GitHub Repository**: https://github.com/jeongtaeksoo/context-adaptive-cognitive-flow
 
-The complete implementation of this clinically-validated pipeline includes multimodal perception, persona-specific recognition, adaptive response generation, and iterative feedback loops with interactive demonstrations.
+The implementation includes multimodal perception, persona-specific recognition, adaptive response generation, and iterative feedback loops with interactive demonstrations.

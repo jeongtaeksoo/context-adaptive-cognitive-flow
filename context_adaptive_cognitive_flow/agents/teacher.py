@@ -22,7 +22,7 @@ class TeacherAgent:
     Teacher Persona: Adaptive Pedagogical Scaffolding
     
     Primary responsibility: maintain user in optimal challenge zone
-    through dynamic difficulty adjustment (Eq. 2-3).
+    through dynamic difficulty adjustment (Eq. 2).
     """
     
     def __init__(self):
@@ -81,9 +81,9 @@ class TeacherAgent:
             L_cog: Current cognitive load
             P_t: Performance probability
             b_t: Current item difficulty
-            b_next: Next item difficulty (from Eq.3)
+            b_next: Next item difficulty (from Eq.2)
             theta_t: Current user ability
-            theta_next: Updated user ability (from Eq.4)
+            theta_next: Updated user ability (from Eq.3)
             
         Returns:
             Formatted teacher update message

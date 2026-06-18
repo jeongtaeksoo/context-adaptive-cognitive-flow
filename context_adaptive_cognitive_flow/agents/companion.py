@@ -6,7 +6,7 @@ accordingly to maintain patient engagement within the optimal learning zone.
 
 Responsibilities:
 - Monitor emotional state from cognitive load patterns
-- Employ valence-arousal mapping (Russell's circumplex model, 80% accuracy)
+- Employ valence-arousal mapping
 - Provide emotional validation and encouragement
 - Detect stress or frustration signals
 

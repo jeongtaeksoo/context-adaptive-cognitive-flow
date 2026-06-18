@@ -27,7 +27,7 @@ with st.sidebar:
         max_value=0.95, 
         value=0.85, 
         step=0.05,
-        help="Optimal learning zone target (Eq.3)"
+        help="Optimal learning zone target (Eq.2)"
     )
     
     st.subheader("Learning Rate")
@@ -37,7 +37,7 @@ with st.sidebar:
         max_value=0.30, 
         value=0.15, 
         step=0.05,
-        help="Rate of item difficulty adaptation (Eq.3)"
+        help="Rate of item difficulty adaptation (Eq.2)"
     )
     
     st.subheader("Initial Conditions")
@@ -47,7 +47,7 @@ with st.sidebar:
         max_value=2.5, 
         value=1.5, 
         step=0.1,
-        help="Starting user ability parameter (Eq.2, 4)"
+        help="Starting user ability parameter (Eq.2, 3)"
     )
     
     b_0 = st.slider(
@@ -56,7 +56,7 @@ with st.sidebar:
         max_value=2.5, 
         value=1.2, 
         step=0.1,
-        help="Starting item difficulty parameter (Eq.2, 3)"
+        help="Starting item difficulty parameter (Eq.2)"
     )
     
     st.subheader("Simulation Steps")
@@ -148,7 +148,7 @@ if run_button:
                      markersize=6, color='#f39c12', label='b_t (item difficulty)')
             ax3.set_xlabel('Time Step', fontsize=10)
             ax3.set_ylabel('Parameter Value', fontsize=10)
-            ax3.set_title('Stage III-IV: Item Difficulty & User Ability (Eq.3-4)', 
+            ax3.set_title('Stage III-IV: Item Difficulty (Eq.2) & User Ability (Eq.3)',
                          fontsize=11, fontweight='bold')
             ax3.legend(loc='best', fontsize=8)
             ax3.grid(True, alpha=0.3)
@@ -173,17 +173,16 @@ if run_button:
         
         with col_eq1:
             st.markdown("**Eq.(1): Cognitive Load**")
-            st.latex(r"L_{cog} = 0.4 \cdot \frac{\Delta t_{resp}}{\bar{t}_{base}} + 0.35 \cdot e_{rate} + 0.25 \cdot \sigma_{att}^2")
+            st.latex(r"L_{cog} = w_1 \cdot \frac{\Delta t_{resp}}{\bar{t}_{base}} + w_2 \cdot e_{rate} + w_3 \cdot \sigma_{att}^2")
+            st.markdown(r"`w_1=0.4`, `w_2=0.35`, `w_3=0.25`")
             
-            st.markdown("**Eq.(2): Performance Probability**")
+            st.markdown("**Eq.(2): Performance Probability and Difficulty Adaptation**")
             st.latex(r"P_t = \frac{1}{1 + \exp(-a \cdot (\theta_t - b_t))}")
-        
-        with col_eq2:
-            st.markdown("**Eq.(3): Item Difficulty Adaptation**")
-            st.latex(r"b_{t+1} = \text{clip}_{[0,3]}(b_t + \eta \cdot (P_t - P^*))")
+            st.latex(r"b_{t+1} = \text{clip}_{[b_{min}, b_{max}]}(b_t + \eta \cdot (P_t - P^*))")
             
-            st.markdown("**Eq.(4): User Ability Update**")
-            st.latex(r"\theta_{t+1} = 0.7 \cdot \theta_t + 0.3 \cdot \hat{\theta}_t")
+        with col_eq2:
+            st.markdown("**Eq.(3): User Ability Update**")
+            st.latex(r"\theta_{t+1} = \lambda \theta_t + (1-\lambda)\hat{\theta}_t")
 
 else:
     st.info("Adjust parameters in the sidebar and click **Run Simulation** to start")
@@ -196,8 +195,8 @@ else:
         st.markdown("**4-Stage Processing Pipeline:**")
         st.markdown("- **Stage I:** Multimodal Data Sensing")
         st.markdown("- **Stage II:** Context Recognition (Eq.1)")
-        st.markdown("- **Stage III:** Response Strategy (Eq.2-3)")
-        st.markdown("- **Stage IV:** Feedback Loop (Eq.4)")
+        st.markdown("- **Stage III:** Response Strategy (Eq.2)")
+        st.markdown("- **Stage IV:** Feedback Loop (Eq.3)")
     
     with col_arch2:
         st.markdown("**3 Persona Agents:**")

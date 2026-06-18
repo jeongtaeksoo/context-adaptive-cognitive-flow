@@ -3,8 +3,7 @@ Stage I: Multimodal Data Sensing
 
 The system captures user interactions through behavioral, vocal, performance, and temporal 
 features. Each persona agent (Teacher, Companion, Coach) employs selective attention to 
-prioritize relevant features, reducing computational load by 62% while maintaining clinical 
-effectiveness.
+prioritize relevant features and reduce computational load in the processing pipeline.
 """
 
 from dataclasses import dataclass

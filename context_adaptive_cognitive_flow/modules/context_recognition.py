@@ -1,13 +1,12 @@
 """
 Stage II: Persona-Specific Context Recognition
 
-To address age-related cognitive variability, we developed a novel cognitive load 
-estimation specifically calibrated for older adults, extending the NASA-TLX framework.
+To address age-related cognitive variability, the framework proposes a cognitive load
+metric based on workload assessment frameworks.
 
-The weights (0.4, 0.35, 0.25) were empirically derived from 120 older adults to ensure 
-L_cog ∈ [0, 2], providing clinically interpretable load levels. The Companion agent employs 
-valence-arousal mapping based on Russell's circumplex model, achieving 80% accuracy in 
-emotion recognition.
+Initial weight parameters (w_1=0.4, w_2=0.35, w_3=0.25) are theory-derived proposals
+prioritizing processing speed. The metric is constrained to L_cog ∈ [0, 2]. The
+Companion agent employs valence-arousal mapping for emotional state assessment.
 """
 
 from .sensing import SensorData
@@ -34,7 +33,8 @@ class ContextRecognizer:
         """
         Compute cognitive load index from multimodal data.
         
-        Eq.(1): L_cog = 0.4*(Δt_resp / t̄_base) + 0.35*e_rate + 0.25*σ_att²
+        Eq.(1): L_cog = w_1*(Δt_resp / t̄_base) + w_2*e_rate + w_3*σ_att²
+        Initial weights: w_1=0.4, w_2=0.35, w_3=0.25
         
         Clinical interpretation:
         - L_cog < 0.5: Low cognitive load (task too easy)

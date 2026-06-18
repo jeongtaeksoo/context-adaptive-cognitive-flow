@@ -13,11 +13,10 @@ The resulting difficulty state (b_t) is then propagated to the Coach and Compani
 which modulate their emotional support and motivational strategies accordingly to maintain 
 patient engagement within the optimal learning zone.
 
-Clinical Validation:
-- 41% higher retention compared to non-adaptive systems
-- 62% reduction in computational load via selective attention
-- 80% emotion recognition accuracy (Russell's circumplex model)
-- Empirically validated with 120 older adults
+Protocol Status:
+- Feasibility-stage implementation for future empirical validation
+- Selective attention prioritizes agent-relevant features
+- Valence-arousal mapping supports emotional state assessment
 """
 
 from .teacher import TeacherAgent

@@ -2,10 +2,8 @@
 Stage IV: Feedback and Iterative Adaptation
 
 The system accommodates day-to-day variability common in older adults through adaptive 
-user modeling. The 0.7/0.3 weighting balances stability against responsiveness, accounting 
-for both "good days" and "bad days" that characterize cognitive aging.
-
-Validation: 41% increase in engagement retention over 6-week intervention.
+user modeling. The lambda weighting balances historical stability against recent
+responsiveness, accounting for day-to-day variability in cognitive aging.
 """
 
 import numpy as np
@@ -18,26 +16,27 @@ class FeedbackLoop:
     Implements recursive capacity estimation via exponential smoothing.
     Enables long-term personalization as user skill evolves.
     
-    Reference: Eq.(4) from paper
+    Reference: Eq.(3) from paper
     """
     
-    def __init__(self, alpha: float = 0.7):
+    def __init__(self, lambda_weight: float = 0.7, *, alpha: float | None = None):
         """
         Initialize feedback loop with smoothing parameter.
         
         Args:
-            alpha: Exponential smoothing weight (memory vs. adaptation tradeoff)
-                   α=0.7 favors historical estimate (stable)
-                   α=0.3 favors new observation (responsive)
+            lambda_weight: Weight balancing historical stability with recent responsiveness
+            alpha: Backward-compatible alias for lambda_weight
         """
-        self.alpha = alpha
-        self.beta = 1.0 - alpha
+        if alpha is not None:
+            lambda_weight = alpha
+        self.lambda_weight = lambda_weight
+        self.recent_weight = 1.0 - lambda_weight
         
     def update_capacity(self, theta_t: float, theta_hat_t: float) -> float:
         """
         Update user capacity estimate via exponential moving average.
         
-        Eq.(4): θ_{t+1} = 0.7*θ_t + 0.3*θ̂_t
+        Eq.(3): θ_{t+1} = λθ_t + (1-λ)θ̂_t
         
         Where:
         - θ_t: Current capacity estimate (smoothed history)
@@ -56,7 +55,7 @@ class FeedbackLoop:
         Returns:
             theta_{t+1}: Updated capacity estimate
         """
-        theta_next = self.alpha * theta_t + self.beta * theta_hat_t
+        theta_next = self.lambda_weight * theta_t + self.recent_weight * theta_hat_t
         return theta_next
     
     def estimate_observed_capacity(self, L_cog: float, P_t: float, b_t: float) -> float:

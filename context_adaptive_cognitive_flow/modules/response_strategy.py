@@ -12,8 +12,8 @@ which modulate their emotional support and motivational strategies accordingly t
 patient engagement within the optimal learning zone.
 
 Crucially, response timing adapts based on age-related processing speed changes.
-This formulation ensures responses are neither frustratingly fast nor patronizingly slow, 
-with bounds empirically validated through older adult usability studies.
+This formulation is designed to keep responses neither frustratingly fast nor
+patronizingly slow.
 """
 
 import numpy as np
@@ -24,12 +24,19 @@ class ResponseStrategy:
     Stage III: Emotionally Adaptive Response Strategy
     
     Implements adaptive difficulty control and emotional state estimation.
-    Equations (2-3) control task difficulty based on user performance probability.
+    Equation (2) controls task difficulty based on user performance probability.
     
-    Reference: Eq.(2-3) from paper
+    Reference: Eq.(2) from paper
     """
     
-    def __init__(self, a: float = 3.0, P_star: float = 0.85, eta: float = 0.15):
+    def __init__(
+        self,
+        a: float = 3.0,
+        P_star: float = 0.85,
+        eta: float = 0.15,
+        b_min: float = 0.0,
+        b_max: float = 3.0,
+    ):
         """
         Initialize response strategy with control parameters.
         
@@ -38,10 +45,14 @@ class ResponseStrategy:
             P_star: Target success probability at approximately 0.85, 
                    the optimal challenge zone for learning
             eta: Bias adaptation learning rate
+            b_min: Minimum task difficulty bound
+            b_max: Maximum task difficulty bound
         """
         self.a = a
         self.P_star = P_star
         self.eta = eta
+        self.b_min = b_min
+        self.b_max = b_max
         
     def compute_performance_probability(self, theta_t: float, b_t: float) -> float:
         """
@@ -70,7 +81,7 @@ class ResponseStrategy:
         """
         Update task difficulty bias to maintain optimal challenge.
         
-        Eq.(3): b_{t+1} = clip_[0,3](b_t + η*(P_t - P*))
+        Eq.(2): b_{t+1} = clip_[b_min,b_max](b_t + η*(P_t - P*))
         
         Adaptive rule:
         - If P_t > P*: task too easy → increase bias (harder)
@@ -81,11 +92,11 @@ class ResponseStrategy:
             P_t: Current performance probability
             
         Returns:
-            b_{t+1}: Updated difficulty bias, clipped to [0, 3]
+            b_{t+1}: Updated difficulty bias, clipped to [b_min, b_max]
         """
         delta_b = self.eta * (P_t - self.P_star)
         b_next = b_t + delta_b
-        b_next = np.clip(b_next, 0.0, 3.0)
+        b_next = np.clip(b_next, self.b_min, self.b_max)
         return b_next
     
     def estimate_emotional_state(self, L_cog: float) -> tuple:

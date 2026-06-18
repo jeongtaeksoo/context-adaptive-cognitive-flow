@@ -11,20 +11,20 @@ Clinical Challenge and System Response:
 Older adults experience variable cognitive performance throughout the day, requiring systems 
 that adapt in real-time to prevent frustration while maintaining therapeutic engagement. 
 Our 4-stage adaptive pipeline addresses this through continuous monitoring and persona-specific 
-response generation, validated to achieve 41% higher retention compared to non-adaptive systems.
+response generation.
 
 Architecture:
 Stage I:   Multimodal Data Sensing → behavioral, vocal, performance, temporal features
 Stage II:  Persona-Specific Context Recognition → L_cog (Eq.1)
-Stage III: Emotionally Adaptive Response Strategy → P_t, b_t (Eq.2-3), emotion, delay
-Stage IV:  Feedback and Iterative Adaptation → θ_t (Eq.4)
+Stage III: Emotionally Adaptive Response Strategy → P_t, b_t (Eq.2), emotion, delay
+Stage IV:  Feedback and Iterative Adaptation → θ_t (Eq.3)
 
 Persona Collaboration:
 Teacher   → Exclusively controls difficulty adaptation (θ_t, b_t, P_t)
 Companion → Receives difficulty state, provides emotional support
 Coach     → Receives difficulty state, delivers motivational feedback
 
-The complete implementation of this clinically-validated pipeline is publicly available at:
+The complete implementation of this protocol-aligned pipeline is publicly available at:
 https://github.com/jeongtaeksoo/context-adaptive-cognitive-flow
 """
 
@@ -62,7 +62,7 @@ class CognitiveFlowSimulator:
         self.sensor = MultimodalSensor(baseline_time=2.0)
         self.context = ContextRecognizer()
         self.response = ResponseStrategy(a=3.0, P_star=P_star, eta=eta)
-        self.feedback = FeedbackLoop(alpha=0.7)
+        self.feedback = FeedbackLoop(lambda_weight=0.7)
         
         self.teacher = TeacherAgent()
         self.companion = CompanionAgent()
@@ -88,8 +88,8 @@ class CognitiveFlowSimulator:
         Processing pipeline:
         1. Sense multimodal data (Stage I)
         2. Compute cognitive load (Stage II, Eq.1)
-        3. Compute performance probability and update difficulty (Stage III, Eq.2-3)
-        4. Update capacity estimate (Stage IV, Eq.4)
+        3. Compute performance probability and update difficulty (Stage III, Eq.2)
+        4. Update capacity estimate (Stage IV, Eq.3)
         5. Generate persona responses
         
         Args:
@@ -223,7 +223,7 @@ class CognitiveFlowSimulator:
                  markersize=6, color='#f39c12', label='b_t (item difficulty)')
         ax3.set_xlabel('Time Step', fontsize=11)
         ax3.set_ylabel('Parameter Value', fontsize=11)
-        ax3.set_title('Stage III-IV: Item Difficulty & User Ability (Eq.3-4)', fontsize=12, fontweight='bold')
+        ax3.set_title('Stage III-IV: Item Difficulty (Eq.2) & User Ability (Eq.3)', fontsize=12, fontweight='bold')
         ax3.legend(loc='best', fontsize=9)
         ax3.grid(True, alpha=0.3)
         
