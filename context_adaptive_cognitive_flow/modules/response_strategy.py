@@ -136,9 +136,12 @@ class ResponseStrategy:
         """
         Compute adaptive system response delay based on cognitive load.
         
-        Formula: t_delay = clip_[1.5, 5.0](2.5 * max(0.5, 1 + 0.8*L_cog))
+        Implementation-specific simulation heuristic:
+        t_delay = clip_[1.5, 5.0](2.5 * max(0.5, 1 + 0.8*L_cog))
         
-        Rationale: Higher cognitive load → longer delay to prevent overwhelm
+        Rationale: The paper states that response timing accommodates age-related
+        processing speed changes. This demo policy operationalizes that design
+        principle; it is not a numbered equation in the paper.
         
         Args:
             L_cog: Cognitive load index

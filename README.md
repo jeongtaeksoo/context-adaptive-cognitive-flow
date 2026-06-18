@@ -81,6 +81,8 @@ context_adaptive_cognitive_flow/
 
 ## Key Equations Implemented
 
+The numbered equations below are aligned with the published protocol.
+
 - **Eq.1** (Cognitive Load): `L_cog = w_1*(Δt_resp/t̄_base) + w_2*e_rate + w_3*σ_att²`
   - Initial weights: `w_1=0.4`, `w_2=0.35`, `w_3=0.25`
 - **Eq.2** (Performance and Difficulty Update): `P_t = 1/(1 + exp(-a*(θ_t - b_t)))`, `b_{t+1} = clip[b_min,b_max](b_t + η*(P_t - P*))`
@@ -89,8 +91,15 @@ context_adaptive_cognitive_flow/
 - **Eq.3** (User Ability Update): `θ_{t+1} = λθ_t + (1-λ)θ̂_t`
   - θ̂_t is the maximum likelihood estimate based on recent performance
   - λ balances stability vs. responsiveness
-- **Delay Formula**: `t_delay = clip[1.5,5.0](2.5 * max(0.5, 1 + 0.8*L_cog))`
+- **Implementation-specific delay heuristic**: `t_delay = clip[1.5,5.0](2.5 * max(0.5, 1 + 0.8*L_cog))`
   - Neither frustratingly fast nor patronizingly slow
+  - This is a simulation policy, not a numbered equation in the paper.
+
+## Implementation Notes
+
+- The response-delay formula is a demo heuristic for operationalizing the paper's response-timing design principle.
+- The observed-capacity estimator used to produce θ̂_t in the simulation is an implementation-specific stand-in for recent-performance estimation.
+- These heuristics support reproducible simulation output and are not additional empirical claims.
 
 ## Dependencies
 
@@ -101,7 +110,7 @@ context_adaptive_cognitive_flow/
 ## Features
 
  Deterministic simulation (reproducible results)  
- Mathematical fidelity to research equations  
+ Alignment with the published numbered equations
  Modular architecture with clean separation of concerns  
  Three collaborative persona agents  
  Real-time visualization of cognitive flow dynamics  

@@ -62,7 +62,9 @@ class FeedbackLoop:
         """
         Estimate observed capacity θ̂_t from current performance metrics.
         
-        Inverse inference: given L_cog and P_t, estimate underlying capacity.
+        The paper defines θ̂_t as a maximum-likelihood estimate based on recent
+        performance. This simulation uses a lightweight implementation-specific
+        heuristic as a stand-in for that estimator.
         
         Heuristic used here:
         θ̂_t ≈ b_t + k*(P_t - 0.5) - m*L_cog
